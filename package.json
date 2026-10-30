@@ -1,0 +1,58 @@
+{
+  "name": "sakai-hub",
+  "version": "1.0.0",
+  "description": "Multi-workspace AI development environment",
+  "main": "out/main/main.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview",
+    "package": "electron-builder",
+    "postinstall": "electron-rebuild -f -w better-sqlite3",
+    "test": "vitest run test/importScanner.test.ts test/tokenEstimator.test.ts test/contextBuilder.test.ts",
+    "test:db": "npm rebuild better-sqlite3 && vitest run test/db.test.ts && electron-rebuild -f -w better-sqlite3",
+    "test:all": "npm rebuild better-sqlite3 && vitest run && electron-rebuild -f -w better-sqlite3",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.10.0",
+    "chokidar": "^3.6.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.460.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0",
+    "tailwind-merge": "^2.6.0",
+    "uuid": "^10.0.0",
+    "ws": "^8.18.0",
+    "zustand": "^5.0.1"
+  },
+  "devDependencies": {
+    "@electron-toolkit/preload": "^3.0.1",
+    "@electron-toolkit/tsconfig": "^2.0.0",
+    "@electron-toolkit/utils": "^3.0.0",
+    "@tailwindcss/forms": "^0.5.9",
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/node": "^22.10.5",
+    "@types/react": "^18.3.17",
+    "@types/react-dom": "^18.3.5",
+    "@types/uuid": "^10.0.0",
+    "@types/ws": "^8.5.13",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "electron": "^33.3.1",
+    "electron-builder": "^25.1.8",
+    "electron-vite": "^2.3.0",
+    "fast-check": "^3.22.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.3",
+    "vite": "^5.4.0",
+    "vitest": "^2.1.8"
+  },
+  "allowScripts": {
+    "electron@33.4.11": true,
+    "better-sqlite3@11.10.0": true,
+    "esbuild@0.21.5": true
+  }
+}

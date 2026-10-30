@@ -1,0 +1,41 @@
+{
+  "name": "sakai-hub-bridge",
+  "displayName": "SaKAi Hub Bridge",
+  "description": "Syncs your active VS Code file with the SaKAi Hub desktop app for AI context building.",
+  "version": "1.0.0",
+  "publisher": "sakai",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sakai/hub"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "sakaiHub.reconnect",
+        "title": "SaKAi Hub: Reconnect"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run compile"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.9.2",
+    "typescript": "^5.7.3"
+  }
+}

@@ -1,0 +1,228 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --sidebar-collapsed: 56px;
+    --sidebar-expanded: 240px;
+    --context-panel-width: 260px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  body {
+    @apply text-on-background font-body-md antialiased;
+    background: radial-gradient(ellipse 70% 55% at 50% 0%, #3b82f6 0%, #bfdbfe 45%, #f0f9ff 100%);
+    background-attachment: fixed;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.58);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.78);
+    border-radius: 16px;
+    transition: background 0.3s ease;
+}
+
+.glass-card:hover {
+    background: rgba(255, 255, 255, 0.65);
+}
+
+.glass-input {
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.2s ease;
+}
+.glass-input:focus {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    outline: none;
+}
+
+.glass-card-danger {
+    background: rgba(255, 255, 255, 0.58);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(186, 26, 26, 0.3);
+    border-radius: 16px;
+    transition: background 0.3s ease;
+}
+
+/* Sidebar Hover Effect */
+.sidebar-collapsible {
+    width: 56px;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sidebar-collapsible:hover {
+    width: 240px;
+}
+
+/* Toggle Switch */
+.toggle-checkbox:checked {
+    right: 0;
+    border-color: #3b82f6;
+}
+.toggle-checkbox:checked + .toggle-label {
+    background-color: #3b82f6;
+}
+
+/* Staggered Animations */
+.stagger-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.delay-1 { animation-delay: 80ms; }
+.delay-2 { animation-delay: 160ms; }
+.delay-3 { animation-delay: 240ms; }
+.delay-4 { animation-delay: 320ms; }
+.delay-5 { animation-delay: 400ms; }
+
+/* Snow Particles */
+#snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+}
+.snowflake {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: fall linear infinite;
+}
+@keyframes fall {
+    0% { transform: translateY(-10px) translateX(0); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(100vh) translateX(20px); opacity: 0; }
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   DARK THEME — activated by `.dark` on <html>. Flips the whole
+   Luminous Glass UI to a cohesive deep-navy aesthetic.
+   ════════════════════════════════════════════════════════════════════ */
+
+html.dark body {
+  background: radial-gradient(ellipse 70% 55% at 50% 0%, #1e3a5f 0%, #131c30 45%, #0a0f1c 100%);
+  color: #e6e9f2;
+}
+
+html.dark .glass-panel {
+  background: rgba(26, 33, 52, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+html.dark .glass-card {
+  background: rgba(30, 38, 59, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+html.dark .glass-card:hover {
+  background: rgba(36, 45, 70, 0.68);
+}
+html.dark .glass-card-danger {
+  background: rgba(40, 26, 30, 0.6);
+  border: 1px solid rgba(186, 26, 26, 0.4);
+}
+html.dark .glass-input {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+html.dark .glass-input:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #4d9fff;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Text colors */
+html.dark .text-on-surface { color: #e6e9f2 !important; }
+html.dark .text-on-background { color: #e6e9f2 !important; }
+html.dark .text-on-surface-variant { color: #aab2c5 !important; }
+html.dark .text-secondary { color: #9aa6bf !important; }
+html.dark .text-tertiary { color: #828ca6 !important; }
+html.dark .text-primary { color: #6db0ff !important; }
+
+/* White translucent surfaces → dark translucent */
+html.dark .bg-white\/90 { background-color: rgba(20, 26, 42, 0.92) !important; }
+html.dark .bg-white\/65 { background-color: rgba(255, 255, 255, 0.08) !important; }
+html.dark .bg-white\/60 { background-color: rgba(255, 255, 255, 0.08) !important; }
+html.dark .bg-white\/50 { background-color: rgba(255, 255, 255, 0.07) !important; }
+html.dark .bg-white\/40 { background-color: rgba(255, 255, 255, 0.06) !important; }
+html.dark .bg-white\/30 { background-color: rgba(255, 255, 255, 0.05) !important; }
+html.dark .bg-white\/20 { background-color: rgba(255, 255, 255, 0.04) !important; }
+html.dark .bg-white\/10 { background-color: rgba(255, 255, 255, 0.03) !important; }
+
+/* Borders */
+html.dark .border-white\/75,
+html.dark .border-white\/70,
+html.dark .border-white\/60,
+html.dark .border-white\/50,
+html.dark .border-white\/40,
+html.dark .border-white\/30,
+html.dark .border-white\/20 { border-color: rgba(255, 255, 255, 0.10) !important; }
+
+/* Surface container tokens (code preview, mode selector bg, token bar track) */
+html.dark .bg-surface-container,
+html.dark .bg-surface-container-low,
+html.dark .bg-surface-container-high { background-color: rgba(255, 255, 255, 0.07) !important; }
+
+/* Hover white tints */
+html.dark .hover\:bg-white\/20:hover,
+html.dark .hover\:bg-white\/40:hover,
+html.dark .hover\:bg-white\/50:hover,
+html.dark .hover\:bg-white\/60:hover { background-color: rgba(255, 255, 255, 0.10) !important; }
