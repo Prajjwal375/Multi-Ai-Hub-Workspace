@@ -9,7 +9,7 @@ export function SnowEffect() {
     for (let i = 0; i < numFlakes; i++) {
       const flake = document.createElement('div')
       flake.classList.add('snowflake')
-      
+
       const size = Math.random() * 4 + 2
       const left = Math.random() * 100
       const duration = Math.random() * 10 + 10
